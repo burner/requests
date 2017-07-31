@@ -7,10 +7,7 @@
 		"-dip1000"
 	],
 	"dependencies": {
-		"vibe-d:core": ">=0.8.0",
-		"vibe-d:http": ">=0.8.0",
-		"vibe-d:inet": ">=0.8.0",
-		"vibe-d:tls": ">=0.8.0"
+		"vibe-d": ">=0.8.0"
 	},
 	"description": "A lightweight vibe.d requestHttp wrapper to execute multiple http requests in parallel",
 	"copyright": "Copyright © 2017, burner",

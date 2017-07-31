@@ -1,11 +1,16 @@
 module requests;
 
-import vibe.core.task : Task;
-import vibe.core.core : runTask;
-import vibe.http.client : requestHTTP, HTTPClientRequest,
-	   HTTPClientResponse, HTTPClientSettings;
-import vibe.http.common : HTTPMethod;
-import vibe.inet.message : InetHeaderMap;
+//import vibe.core.task : Task;
+//import vibe.core.core : runTask;
+//import vibe.http.client : requestHTTP, HTTPClientRequest,
+//	   HTTPClientResponse, HTTPClientSettings;
+//import vibe.http.common : HTTPMethod;
+//import vibe.inet.message : InetHeaderMap;
+import vibe.core.task;
+import vibe.core.core;
+import vibe.http.client;
+import vibe.http.common;
+import vibe.inet.message;
 
 // This object is a placeholder and should to never be modified.
 private @property const(HTTPClientSettings) requestDefaultSettings()
@@ -59,10 +64,14 @@ Task startHTTPGet(T...)(string uri, auto ref T ts) {
 }
 
 unittest {
+	import std.array : empty;
+	import vibe.stream.operations : readAllUTF8;
+
 	void func(scope HTTPClientResponse res) {
-		
+		string data = res.bodyReader.readAllUTF8();
+		assert(!data.empty);
 	}
 
-	auto s = startHTTPGet("http://www.google.de", &func);
+	auto s = startHTTPGet("http://www.example.com", &func);
 	s.join();
 }
